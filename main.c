@@ -14,7 +14,7 @@
 #define WINDOW_HEIGHT (24 * SIZE)
 #define bmp_size (WINDOW_WIDTH * WINDOW_HEIGHT)
 
-float delay = 0.5; // time delay in seconds
+float delay = 1; // time delay in seconds
 int score = 0;
 
 int render(int board[10][20], piece new, struct RGB *rgb) {
@@ -88,6 +88,11 @@ int line (int board[10][20]) {
 
 			score = score + 100; // score increase
 			printf("SCORE: %d\n", score);
+
+			if (score % 1000 == 0) {
+				printf("SPEED: %f\n", delay);
+				delay = delay - 0.1;
+			}
 
 		} else {
 			continue;
