@@ -90,8 +90,8 @@ int line (int board[10][20]) {
 			printf("SCORE: %d\n", score);
 
 			if (score % 1000 == 0) {
-				printf("SPEED: %f\n", delay);
 				delay = delay - 0.1;
+				printf("SPEED: %f\n", delay);
 			}
 
 		} else {
