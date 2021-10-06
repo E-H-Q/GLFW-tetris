@@ -39,6 +39,7 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (new.data[i][j] == 1) {
+				glColor3f(1, 0, 0);
 				square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 			} else {
 				continue;
