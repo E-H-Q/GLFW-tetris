@@ -245,13 +245,13 @@ int main() {
 
 	// MAIN LOOP
 	while (!glfwWindowShouldClose(window)) {
+		line(board); // checks for filled lines
 		// clock
 		float now = glfwGetTime();
 		float delta = now - previous;
 		previous = now;
 		time -= delta;
 		if (time <= 0.f) {
-			line(board); // checks for filled lines
 			time = delay; // needs to be reset on keypress too(?)
 			// hacky re-used code but whatevah man take it easy :^)
 			piece temp;
