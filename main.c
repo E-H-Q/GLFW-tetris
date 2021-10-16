@@ -8,6 +8,7 @@
 #include "pieces.h"
 #include "draw.c"
 #include "bmp.c"
+#include "font.h"
 
 #define SIZE 30 // size of the "blocks", (used for tetriminoes and window + board sizing)
 #define WINDOW_WIDTH (18 * SIZE)
@@ -16,6 +17,34 @@
 
 float delay = 1; // time delay in seconds
 int score = 0;
+
+void makeRasterFont(void) {
+	GLuint i, j;
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	fontOffset = glGenLists (128);
+	for (i = 0,j = 'A'; i < 26; i++,j++) {
+		glNewList(fontOffset + j, GL_COMPILE);
+		glBitmap(8, 13, 0.0, 2.0, 10.0, 0.0, letters[i]); // width, height, xorig, yorig, kerning(?), angle(?)
+		glEndList();
+	}
+	for (i = 0, j = '0'; i < 10; i++, j++) {
+		glNewList(fontOffset + j, GL_COMPILE);
+		glBitmap(8, 13, 0.0, 2.0, 10.0, 0.0, numbers[i]);
+		glEndList();
+	}
+	glNewList(fontOffset + ' ', GL_COMPILE);
+	glBitmap(8, 13, 0.0, 2.0, 10.0, 0.0, space);
+	glEndList();
+}
+
+void printString(char *s, int x, int y) {
+	glRasterPos2i(x, y);
+	glPushAttrib (GL_LIST_BIT);
+	glListBase(fontOffset);
+	glCallLists((GLsizei) strlen(s), GL_UNSIGNED_BYTE, (GLubyte *) s);
+	glPopAttrib();
+}
 
 int render(int board[10][20], piece new, struct RGB *rgb) {
 	// clears the screen
@@ -48,6 +77,15 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 	}
 	// draw the bitmap
 	drawBitmap(rgb, 1, 600);
+	// text
+	float white[3] = {255, 255, 255}; // text color def.
+	glColor3fv(white); // text color call
+	char nums[100];
+	char lets[15] = "SCORE :";
+	sprintf(nums, "%d", score);
+	strcat(lets, nums);
+	printString(lets, 400, 550); // text, X, Y
+	glFlush();
 }
 
 int rotateRight(int matrix[4][4]) {
@@ -244,6 +282,9 @@ int main() {
 	float time = delay;
 	float previous = glfwGetTime();
 
+	// Font rendering setup
+	makeRasterFont();
+
 	// MAIN LOOP
 	while (!glfwWindowShouldClose(window)) {
 		line(board); // checks for filled lines
@@ -272,7 +313,12 @@ int main() {
 				}
 				new = tetrimino(new); // fills out "new.data"
 				rotateRight(new.data); // needs to be rotated right away for some reason
-				new.y = new.y;
+				if (check(board, new)) {
+					new.y = new.y;
+				} else {
+					puts("GAME OVER!!! GO HOME! >:(");
+					exit(0);
+				}
 			}
 		}
 
