@@ -131,14 +131,14 @@ int line (int board[10][20]) {
 			}
 
 			score = score + 100; // score increase
-			printf("SCORE: %d\n", score);
+			//printf("SCORE: %d\n", score);
 
 			if (score % 1000 == 0) {
 				level++;
 				if (delay > 0.1) {
 					delay = delay - 0.1;
 				}
-				printf("SPEED: %f\n", delay);
+				//printf("SPEED: %f\n", delay);
 			}
 
 		} else {
