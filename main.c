@@ -17,6 +17,7 @@
 
 float delay = 1; // time delay in seconds
 int score = 0;
+int level = 1;
 
 void makeRasterFont(void) {
 	GLuint i, j;
@@ -82,9 +83,13 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 	glColor3fv(white); // text color call
 	char nums[100];
 	char lets[15] = "SCORE :";
+	char lets2[15] = "LEVEL :";
 	sprintf(nums, "%d", score);
 	strcat(lets, nums);
+	sprintf(nums, "%d", level);
+	strcat(lets2, nums);
 	printString(lets, 400, 550); // text, X, Y
+	printString(lets2, 400, 600); // text, X, Y
 	glFlush();
 }
 
@@ -129,7 +134,10 @@ int line (int board[10][20]) {
 			printf("SCORE: %d\n", score);
 
 			if (score % 1000 == 0) {
-				delay = delay - 0.1;
+				level++;
+				if (delay > 0.1) {
+					delay = delay - 0.1;
+				}
 				printf("SPEED: %f\n", delay);
 			}
 
