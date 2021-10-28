@@ -58,21 +58,80 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 	// draw the board
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 20; j++) {
-			if (board[i][j] == 1) {
-				square(i * SIZE, j * SIZE, SIZE);
-			} else {
-				continue;
+			switch(board[i][j]) {
+				case 0:
+					continue;
+					break;
+				case 1:
+					glColor3f(1, 0, 0);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 2:
+					glColor3f(0, 0.9, 0);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 3:
+					glColor3f(0, 0, 0.8);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 4:
+					glColor3f(0.5, 0, 1);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 5:
+					glColor3f(0.2, 1, 1);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 6:
+					glColor3f(1, 1, 0);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				case 7:
+					glColor3f(1, 0.3, 1);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
+				default:
+					glColor3f(1, 1, 1);
+					square(i * SIZE, j * SIZE, SIZE);
+					break;
 			}
 		}
 	}
 	// draw the tetrimino
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			if (new.data[i][j] == 1) {
-				glColor3f(1, 0, 0);
-				square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
-			} else {
-				continue;
+			switch(new.data[i][j]) {
+				case 0:
+					continue;
+					break;
+				case 1:
+					glColor3f(1, 0, 0);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 2:
+					glColor3f(0, 0.9, 0);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 3:
+					glColor3f(0, 0, 0.8);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 4:
+					glColor3f(0.5, 0, 1);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 5:
+					glColor3f(0.2, 1, 1);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 6:
+					glColor3f(1, 1, 0);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
+				case 7:
+					glColor3f(1, 0.3, 1);
+					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
+					break;
 			}
 		}
 	}
@@ -150,10 +209,10 @@ int line (int board[10][20]) {
 int check(int board[10][20], piece temp) {
 	for (int i = 0; i < 4; i++) { // collison detection
 		for (int j = 0; j < 4; j++) {
-			if (temp.data[i][j] == 1 && board[temp.x + i][temp.y + j] != 0) {
+			if (temp.data[i][j] != 0 && board[temp.x + i][temp.y + j] != 0) {
 				return 0;
 			}
-			if (temp.data[i][j] == 1 && (temp.x + i >= 10 || temp.x + i < 0 || temp.y + j >= 20 || temp.y + j < 0)) {
+			if (temp.data[i][j] != 0 && (temp.x + i >= 10 || temp.x + i < 0 || temp.y + j >= 20 || temp.y + j < 0)) {
 				return 0;
 			}
 		}
@@ -164,7 +223,7 @@ int check(int board[10][20], piece temp) {
 int merge(int board[10][20], piece new) {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			if (new.data[i][j] == 1) {
+			if (new.data[i][j] != 0) {
 				board[new.x + i][new.y + j] = new.data[i][j];
 			}
 		}
