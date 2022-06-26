@@ -383,6 +383,7 @@ int main() {
 				if (check(board, new)) {
 					new.y = new.y;
 				} else {
+					printf("SCORE: %d\n", score);
 					puts("GAME OVER!!! GO HOME! >:(");
 					exit(0);
 				}
