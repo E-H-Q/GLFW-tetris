@@ -52,9 +52,6 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 	glClearColor ( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	// draw border around the board area
-	rect(1, 0, 10 * SIZE, 20 * SIZE);
-
 	// draw the board
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 20; j++) {
@@ -135,6 +132,8 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 			}
 		}
 	}
+	// draw border around the board area
+	rect(1, 0, 10 * SIZE, 20 * SIZE);
 	// draw the bitmap
 	drawBitmap(rgb, 1, 600);
 	// text
