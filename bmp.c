@@ -51,7 +51,7 @@ int readBitmap(const char *filename, char vals[][8]) {
 
 float hex2float(char *str, float arr[]) {
 	int r, g, b;
-	sscanf(str, "%02x%02x%02x", &r, &g, &b);
+	sscanf(str, "%02X%02X%02X", &r, &g, &b);
 
 	arr[0] = r / 255;
 	arr[1] = g / 255;
