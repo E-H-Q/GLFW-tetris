@@ -60,31 +60,31 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 					continue;
 					break;
 				case 1:
-					glColor3f(1, 0, 0);
+					glColor3f(0.8, 0.114, 0.039); // L
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 2:
-					glColor3f(0, 0.9, 0);
+					glColor3f(0.149, 0.804, 0.839); // S
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 3:
-					glColor3f(0, 0, 0.8);
+					glColor3f(0.098, 0.345, 0.918); // J
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 4:
-					glColor3f(0.5, 0, 1);
+					glColor3f(0, 0.2, 0.227); // I
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 5:
-					glColor3f(0.2, 1, 1);
+					glColor3f(0.051, 0.6, 0.216); // Z
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 6:
-					glColor3f(1, 1, 0);
+					glColor3f(0.9, 0.875, 0.788); // O
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				case 7:
-					glColor3f(1, 0.3, 1);
+					glColor3f(0.9, 0.7, 0.114); // T
 					square(i * SIZE, j * SIZE, SIZE);
 					break;
 				default:
@@ -102,31 +102,31 @@ int render(int board[10][20], piece new, struct RGB *rgb) {
 					continue;
 					break;
 				case 1:
-					glColor3f(1, 0, 0);
+					glColor3f(0.8, 0.114, 0.039); // L
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 2:
-					glColor3f(0, 0.9, 0);
+					glColor3f(0.149, 0.804, 0.839); // S
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 3:
-					glColor3f(0, 0, 0.8);
+					glColor3f(0.098, 0.345, 0.918); // J
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 4:
-					glColor3f(0.5, 0, 1);
+					glColor3f(0, 0.2, 0.227); // I
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 5:
-					glColor3f(0.2, 1, 1);
+					glColor3f(0.051, 0.6, 0.216); // Z
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 6:
-					glColor3f(1, 1, 0);
+					glColor3f(0.9, 0.875, 0.788); // O
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 				case 7:
-					glColor3f(1, 0.3, 1);
+					glColor3f(0.9, 0.7, 0.114); // T
 					square(i * SIZE + (new.x * SIZE), j * SIZE + (new.y * SIZE), SIZE);
 					break;
 			}
